@@ -1,0 +1,249 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		DD6E4D0919F05DAB003508D8 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		DD6E4D0A19F05DAB003508D8 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		DD6E4D0B19F05DAB003508D8 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		DD6E4D0C19F05DC1003508D8 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		DD6E4D0D19F05EE5003508D8 /* RTAWaveformExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAWaveformExtractor.h; sourceTree = "<group>"; };
+		DD6E4D0E19F05EE5003508D8 /* RTAWaveformExtractor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RTAWaveformExtractor.cpp; sourceTree = "<group>"; };
+		DD6E4D0F19F0719E003508D8 /* Producer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Producer.h; sourceTree = "<group>"; };
+		DD6E4D1019F0719E003508D8 /* Producer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Producer.cpp; sourceTree = "<group>"; };
+		DDD7052F19F30FAC006672EA /* RTADataProto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTADataProto.h; sourceTree = "<group>"; };
+		DDD7053019F31A08006672EA /* main2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main2.cpp; sourceTree = "<group>"; };
+		DDD7058619F5205F006672EA /* CTAHeaderGEN.header */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CTAHeaderGEN.header; sourceTree = "<group>"; };
+		DDD7058719F5205F006672EA /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		DDD7058819F5205F006672EA /* rta_fadc_all.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = rta_fadc_all.xml; sourceTree = "<group>"; };
+		DDD7058919F5205F006672EA /* rta_fadc_all_BIGFALSE.stream */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rta_fadc_all_BIGFALSE.stream; sourceTree = "<group>"; };
+		DDD7058A19F5205F006672EA /* rta_fadc_all_BIGTRUE.stream */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rta_fadc_all_BIGTRUE.stream; sourceTree = "<group>"; };
+		DDD7058B19F5205F006672EA /* triggered_telescope1_30GEN.packet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triggered_telescope1_30GEN.packet; sourceTree = "<group>"; };
+		DDD7058C19F5205F006672EA /* triggered_telescope1_40GEN.packet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triggered_telescope1_40GEN.packet; sourceTree = "<group>"; };
+		DDD7058D19F5205F006672EA /* triggered_telescope1_50GEN.packet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triggered_telescope1_50GEN.packet; sourceTree = "<group>"; };
+		DDD7058E19F5205F006672EA /* triggered_telescope_pixel1_30GEN.rblock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triggered_telescope_pixel1_30GEN.rblock; sourceTree = "<group>"; };
+		DDD7058F19F5205F006672EA /* triggered_telescope_pixel1_40GEN.rblock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triggered_telescope_pixel1_40GEN.rblock; sourceTree = "<group>"; };
+		DDD7059019F5205F006672EA /* triggered_telescope_pixel1_50GEN.rblock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triggered_telescope_pixel1_50GEN.rblock; sourceTree = "<group>"; };
+		DDD7059119F5205F006672EA /* triggered_telescope_pixelIDGEN.rblock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triggered_telescope_pixelIDGEN.rblock; sourceTree = "<group>"; };
+		DDD7059219F52A46006672EA /* RTACleaning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RTACleaning.cpp; sourceTree = "<group>"; };
+		DDD7059319F52A46006672EA /* RTACleaning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTACleaning.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		DD6E4CFC19F05CA3003508D8 = {
+			isa = PBXGroup;
+			children = (
+				DDD7058519F5205F006672EA /* conf */,
+				DD6E4D0C19F05DC1003508D8 /* Makefile */,
+				DD6E4D0719F05DAB003508D8 /* code */,
+			);
+			sourceTree = "<group>";
+		};
+		DD6E4D0719F05DAB003508D8 /* code */ = {
+			isa = PBXGroup;
+			children = (
+				DDD7059219F52A46006672EA /* RTACleaning.cpp */,
+				DDD7059319F52A46006672EA /* RTACleaning.h */,
+				DDD7053019F31A08006672EA /* main2.cpp */,
+				DDD7052F19F30FAC006672EA /* RTADataProto.h */,
+				DD6E4D0F19F0719E003508D8 /* Producer.h */,
+				DD6E4D1019F0719E003508D8 /* Producer.cpp */,
+				DD6E4D0D19F05EE5003508D8 /* RTAWaveformExtractor.h */,
+				DD6E4D0E19F05EE5003508D8 /* RTAWaveformExtractor.cpp */,
+				DD6E4D0919F05DAB003508D8 /* main.cpp */,
+				DD6E4D0A19F05DAB003508D8 /* README */,
+				DD6E4D0B19F05DAB003508D8 /* version.h */,
+			);
+			path = code;
+			sourceTree = "<group>";
+		};
+		DDD7058519F5205F006672EA /* conf */ = {
+			isa = PBXGroup;
+			children = (
+				DDD7058619F5205F006672EA /* CTAHeaderGEN.header */,
+				DDD7058719F5205F006672EA /* README */,
+				DDD7058819F5205F006672EA /* rta_fadc_all.xml */,
+				DDD7058919F5205F006672EA /* rta_fadc_all_BIGFALSE.stream */,
+				DDD7058A19F5205F006672EA /* rta_fadc_all_BIGTRUE.stream */,
+				DDD7058B19F5205F006672EA /* triggered_telescope1_30GEN.packet */,
+				DDD7058C19F5205F006672EA /* triggered_telescope1_40GEN.packet */,
+				DDD7058D19F5205F006672EA /* triggered_telescope1_50GEN.packet */,
+				DDD7058E19F5205F006672EA /* triggered_telescope_pixel1_30GEN.rblock */,
+				DDD7058F19F5205F006672EA /* triggered_telescope_pixel1_40GEN.rblock */,
+				DDD7059019F5205F006672EA /* triggered_telescope_pixel1_50GEN.rblock */,
+				DDD7059119F5205F006672EA /* triggered_telescope_pixelIDGEN.rblock */,
+			);
+			path = conf;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		DD6E4D0119F05CA3003508D8 /* RTAProtoAlgorithms */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = DD6E4D0419F05CA3003508D8 /* Build configuration list for PBXLegacyTarget "RTAProtoAlgorithms" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			dependencies = (
+			);
+			name = RTAProtoAlgorithms;
+			passBuildSettingsInEnvironment = 1;
+			productName = RTAProtoAlgorithms;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		DD6E4CFD19F05CA3003508D8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Andrea Bulgarelli";
+				TargetAttributes = {
+					DD6E4D0119F05CA3003508D8 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+				};
+			};
+			buildConfigurationList = DD6E4D0019F05CA3003508D8 /* Build configuration list for PBXProject "RTAProtoAlgorithms" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DD6E4CFC19F05CA3003508D8;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD6E4D0119F05CA3003508D8 /* RTAProtoAlgorithms */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		DD6E4D0219F05CA3003508D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DD6E4D0319F05CA3003508D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DD6E4D0519F05CA3003508D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DD6E4D0619F05CA3003508D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DD6E4D0019F05CA3003508D8 /* Build configuration list for PBXProject "RTAProtoAlgorithms" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD6E4D0219F05CA3003508D8 /* Debug */,
+				DD6E4D0319F05CA3003508D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD6E4D0419F05CA3003508D8 /* Build configuration list for PBXLegacyTarget "RTAProtoAlgorithms" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD6E4D0519F05CA3003508D8 /* Debug */,
+				DD6E4D0619F05CA3003508D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DD6E4CFD19F05CA3003508D8 /* Project object */;
+}
