@@ -72,7 +72,7 @@ void RTACleaning::clean(int16_t **inPixId, uint16_t *counts) {
 			
 			if (inPixId[i][j] >= 0) {               // Process only valid pixels
 				
-				cout << "i " << i << "	" << j << " " << inPixId[i][j] << " " << counts[inPixId[i][j]] << endl;
+				//cout << "i " << i << "	" << j << " " << inPixId[i][j] << " " << counts[inPixId[i][j]] << endl;
 				
 				if (counts[inPixId[i][j]] >= n1) {  // Check selection threshold
 					
@@ -102,4 +102,38 @@ void RTACleaning::clean(int16_t **inPixId, uint16_t *counts) {
 	}
 	
 }
+
+void RTACleaning::clean2(int16_t **inPixId, uint16_t *counts) {
+	
+	// Optimize avoiding temporary variables
+	
+	for (CTAGridMap::Size i = 0; i < gm->getRowSz(); i++) {
+		
+		for (size_t j = 0; j < gm->getColSz(); j++) {
+			
+			//cout << i << "	" << j << " " << inPixId[i][j] << endl;
+			
+			if (inPixId[i][j] >= 0) {               // Process only valid pixels
+				
+				
+				
+				if (counts[inPixId[i][j]] >= n1) {  // Check selection threshold
+					
+					
+					outPixId[i][j] = inPixId[i][j];
+					
+				} else
+					outPixId[i][j] = -1;
+				
+			} else
+				outPixId[i][j] = -1;
+			
+			//cout << n1 << " i " << i << "	" << j << " " << inPixId[i][j] << " " << counts[inPixId[i][j]] << " " << outPixId[i][j] <<  endl;
+			
+		}
+		
+	}
+	
+}
+
 

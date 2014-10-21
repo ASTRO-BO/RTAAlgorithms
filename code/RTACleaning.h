@@ -44,6 +44,7 @@ namespace RTAAlgorithm {
 	protected:
 		
 		void clean(int16_t **inPixId, uint16_t *counts);
+		void clean2(int16_t **inPixId, uint16_t *counts);
 		
 	private:
 		

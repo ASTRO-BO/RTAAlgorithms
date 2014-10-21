@@ -81,7 +81,7 @@ int mainT(int argc, char *argv[])
 	delbuff.join();
 }
 
-int mainP(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	
 	const char* home = getenv("CTARTA");
@@ -121,7 +121,7 @@ int mainP(int argc, char *argv[])
 		RTAData_Camera* cam = fullcamData.getNext();
 		RTAData_CameraExtracted* integrated = (RTAData_CameraExtracted*) waveextractor.process(cam);
 		//cout << integrated->id << endl;
-		cleaning.process(integrated);
+		//cleaning.process(integrated);
 		
 		delete integrated;
 
