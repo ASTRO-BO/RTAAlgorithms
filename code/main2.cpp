@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <semaphore.h>
 #include <stdlib.h>
+#include <fcntl.h>
 
 #define MAX 5
 

@@ -69,7 +69,7 @@ ICON_DIR = ui
 ifneq (, $(findstring mpi, $(LINKERENV)))
 CC       = mpic++
 else
-CC       = gcc
+CC       = g++
 endif
 
 #Set INCPATH to add the inclusion paths
@@ -77,7 +77,7 @@ INCPATH = -I $(INCLUDE_DIR) -I $(CTARTA)/include
 LIBS = -lstdc++
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
 CFLAGS   ?= -g
-CXXFLAGS ?=
+CXXFLAGS ?= -std=c++11
 #Insert the implicit parameter to the compiler:
 ALL_CFLAGS = -m64 -fexceptions -Wall  $(INCPATH)
 
@@ -85,7 +85,7 @@ ifneq (, $(findstring cfitsio, $(LINKERENV)))
 	LIBS += -lcfitsio
 endif
 ifneq (, $(findstring ctarta, $(LINKERENV)))
-	LIBS += -L$(CTARTA)/lib	-lpacket -lRTAAlgorithms -lRTAUtils -lCTAConfig -pthreads
+	LIBS += -L$(CTARTA)/lib	-lpacket -lRTAAlgorithms -lRTAUtils -lCTAConfig -lpthread
 endif
 ifneq (, $(findstring root, $(LINKERENV)))
 	ROOTCFLAGS   := $(shell root-config --cflags)
