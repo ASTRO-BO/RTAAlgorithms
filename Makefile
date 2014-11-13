@@ -253,8 +253,8 @@ install: all
 	$(COPY_FILE) $(INCLUDE) $(includedir)
 	
 	# For exe installation
-#test -d $(bindir) || mkdir -p $(bindir)
-#	$(COPY_FILE) $(EXE_DESTDIR)/$(EXE_NAME1) $(bindir)
+	test -d $(bindir) || mkdir -p $(bindir)
+	$(COPY_FILE) $(EXE_DESTDIR)/$(EXE_NAME1) $(bindir)
 #	$(COPY_FILE) $(EXE_DESTDIR)/$(EXE_NAME2) $(bindir)
 	
 	#copy icon
