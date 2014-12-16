@@ -76,10 +76,10 @@ endif
 INCPATH = -I $(INCLUDE_DIR) -I $(CTARTA)/include
 LIBS = -lstdc++
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
-CFLAGS   ?= -g
-CXXFLAGS ?= -std=c++11
+CFLAGS   ?=
+CXXFLAGS ?=
 #Insert the implicit parameter to the compiler:
-ALL_CFLAGS = -m64 -fexceptions -Wall  $(INCPATH)
+ALL_CFLAGS = -Wall -std=c++11 $(INCPATH)
 
 ifneq (, $(findstring cfitsio, $(LINKERENV)))
 	LIBS += -lcfitsio
