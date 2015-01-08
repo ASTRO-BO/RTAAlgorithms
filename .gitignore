@@ -1,1 +1,8 @@
 *.stream
+alg1
+alg2
+alg3
+lib/*
+obj/*
+version
+prefix

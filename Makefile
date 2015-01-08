@@ -27,6 +27,8 @@ SYSTEM= $(shell gcc -dumpmachine)
 #ice, ctarta, mpi, cfitsio
 LINKERENV= ctarta, cfitsio
 EXE_NAME1 = alg1
+EXE_NAME2 = alg2
+EXE_NAME3 = alg3
 LIB_NAME = librtaproto
 VER_FILE_NAME = version.h
 #the name of the directory where the conf file are copied (into $(datadir))
@@ -76,8 +78,8 @@ endif
 INCPATH = -I $(INCLUDE_DIR) -I $(CTARTA)/include
 LIBS = -lstdc++
 #Insert the optional parameter to the compiler. The CFLAGS could be changed externally by the user
-CFLAGS   ?=
-CXXFLAGS ?=
+CFLAGS   ?= -g
+CXXFLAGS ?= -g
 #Insert the implicit parameter to the compiler:
 ALL_CFLAGS = -Wall -std=c++11 $(INCPATH)
 
@@ -85,7 +87,7 @@ ifneq (, $(findstring cfitsio, $(LINKERENV)))
 	LIBS += -lcfitsio
 endif
 ifneq (, $(findstring ctarta, $(LINKERENV)))
-	LIBS += -L$(CTARTA)/lib	-lpacket -lRTAAlgorithms -lRTAUtils -lCTAConfig -lpthread
+	LIBS += -L$(CTARTA)/lib	-lpacket -lCTAConfig -lRTAUtils -lRTAAlgorithms -lpthread
 endif
 ifneq (, $(findstring root, $(LINKERENV)))
 	ROOTCFLAGS   := $(shell root-config --cflags)
@@ -164,10 +166,10 @@ $(shell  cut $(INCLUDE_DIR)/$(VER_FILE_NAME) -f 3 > version)
 
 ####### 9) Pattern rules
 
-%.o : %.cpp
+%.o : %.cpp | makeobjdir
 	$(CXX) $(CXXFLAGS) $(ALL_CFLAGS) -c $< -o $(OBJECTS_DIR)/$@
 
-%.o : %.c
+%.o : %.c | makeobjdir
 	$(CC) $(CFLAGS) $(ALL_CFLAGS) -c $< -o $(OBJECTS_DIR)/$@
 
 #only for documentation generation
@@ -180,22 +182,27 @@ $(DOXY_SOURCE_DIR)/%.cpp : %.cpp
 ####### 10) Build rules
 
 #all: compile the entire program.
-all: exe lib
+all: $(EXE_NAME1) $(EXE_NAME2) $(EXE_NAME3) lib
 		#only if conf directory is present:
 		#$(SYMLINK) $(CONF_DIR) $(CONF_DEST_DIR)
 
 lib: staticlib 
+
+$(EXE_DESTDIR)/$(EXE_NAME1): main.o Producer.o RTACleaning.o RTAWaveformExtractor.o | makeexedir
+		$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -o $(EXE_DESTDIR)/$(EXE_NAME1) $(OBJECTS_DIR)/main.o $(OBJECTS_DIR)/Producer.o $(OBJECTS_DIR)/RTACleaning.o $(OBJECTS_DIR)/RTAWaveformExtractor.o $(LIBS)
+
+$(EXE_DESTDIR)/$(EXE_NAME2): main2.o Producer.o RTACleaning.o RTAWaveformExtractor.o | makeexedir
+		$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -o $(EXE_DESTDIR)/$(EXE_NAME2) $(OBJECTS_DIR)/main2.o $(OBJECTS_DIR)/Producer.o $(OBJECTS_DIR)/RTACleaning.o $(OBJECTS_DIR)/RTAWaveformExtractor.o $(LIBS)
+
+$(EXE_DESTDIR)/$(EXE_NAME3): main3.o | makeexedir
+		$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -o $(EXE_DESTDIR)/$(EXE_NAME3) $(OBJECTS_DIR)/main3.o -lpthread
 	
-exe: makeobjdir $(OBJECTS)
-		test -d $(EXE_DESTDIR) || mkdir -p $(EXE_DESTDIR)
-		$(CC) $(CPPFLAGS) $(ALL_CFLAGS) -o $(EXE_DESTDIR)/$(EXE_NAME1) $(OBJECTS_DIR)/*.o $(LIBS)
-	
-staticlib: makelibdir makeobjdir $(OBJECTS)	
+staticlib: makelibdir $(OBJECTS)	
 		test -d $(LIB_DESTDIR) || mkdir -p $(LIB_DESTDIR)	
 		$(DEL_FILE) $(LIB_DESTDIR)/$(TARGETA) 	
 		$(AR) $(LIB_DESTDIR)/$(TARGETA) $(OBJECTS_DIR)/*.o
 	
-dynamiclib: makelibdir makeobjdir $(OBJECTS)	
+dynamiclib: makelibdir $(OBJECTS)	
 		$(DEL_FILE) $(TARGET) $(TARGET0) $(TARGET1) $(TARGET2)
 		$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS_DIR)/*.o $(LIBS)
 		$(SYMLINK) $(TARGET) $(TARGET0)
@@ -209,6 +216,9 @@ dynamiclib: makelibdir makeobjdir $(OBJECTS)
 	
 makeobjdir:
 	test -d $(OBJECTS_DIR) || mkdir -p $(OBJECTS_DIR)
+
+makeexedir:
+	test -d $(EXE_DESTDIR) || mkdir -p $(EXE_DESTDIR)
 	
 makelibdir:
 	test -d $(LIB_DESTDIR) || mkdir -p $(LIB_DESTDIR)
@@ -220,7 +230,8 @@ clean:
 	$(DEL_FILE) $(LIB_DESTDIR)/*.a
 	$(DEL_FILE) $(LIB_DESTDIR)/*.so*
 	$(DEL_FILE) $(EXE_DESTDIR)/$(EXE_NAME1)
-#$(DEL_FILE) $(EXE_DESTDIR)/$(EXE_NAME2)
+	$(DEL_FILE) $(EXE_DESTDIR)/$(EXE_NAME2)
+	$(DEL_FILE) $(EXE_DESTDIR)/$(EXE_NAME3)
 	$(DEL_FILE) version
 	$(DEL_FILE) prefix
 	$(DEL_FILE) $(PROJECT).dvi
@@ -255,7 +266,8 @@ install: all
 	# For exe installation
 	test -d $(bindir) || mkdir -p $(bindir)
 	$(COPY_FILE) $(EXE_DESTDIR)/$(EXE_NAME1) $(bindir)
-#	$(COPY_FILE) $(EXE_DESTDIR)/$(EXE_NAME2) $(bindir)
+	$(COPY_FILE) $(EXE_DESTDIR)/$(EXE_NAME2) $(bindir)
+	$(COPY_FILE) $(EXE_DESTDIR)/$(EXE_NAME3) $(bindir)
 	
 	#copy icon
 	#test -d $(icondir) || mkdir -p $(icondir)
@@ -277,7 +289,9 @@ uninstall:
 	$(DEL_FILE) $(addprefix $(includedir)/, $(notdir $(INCLUDE)))
 	
 	# For exe uninstall
-	$(DEL_FILE) $(bindir)/$(EXE_NAME)
+	$(DEL_FILE) $(bindir)/$(EXE_NAME1)
+	$(DEL_FILE) $(bindir)/$(EXE_NAME2)
+	$(DEL_FILE) $(bindir)/$(EXE_NAME3)
 	#$(DEL_FILE) $(icondir)/$(ICON_NAME)
 	
 #dist: create a distribution tar file for this program
@@ -303,3 +317,5 @@ info:	makedoxdir $(DOC_INCLUDE) $(DOC_SOURCE)
 	
 makedoxdir:
 	test -d $(DOXY_SOURCE_DIR) || mkdir -p $(DOXY_SOURCE_DIR)
+
+.PHONY: all lib staticlib dynamiclib makeobjdir makeexedir makelibdir clean distclean install uninstall dist svi pdf ps info makedoxdir
