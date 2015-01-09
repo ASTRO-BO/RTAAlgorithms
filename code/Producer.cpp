@@ -82,9 +82,8 @@ void ProducerCameraData::createBuffer(string configFileName, string rawfilename)
 #endif
 		elem->nbytes = data->size();
 		
-		//elem->data = new uint16_t[elem->nbytes / 2];
-		//memcpy(elem->data, data->getStream(), data->size());
-		elem->data = (uint16_t*)data->getStream();
+		elem->data = new uint16_t[data->size()];
+		memcpy(elem->data, data->getStream(), data->size());
 		elem->npix = npix;
 		elem->nsamp = nsamp;
 		elem->telID = telID;

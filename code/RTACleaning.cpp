@@ -30,10 +30,6 @@ RTACleaning::RTACleaning(CTAConfig::CTAMDArray* array, RTABuffer* buffer_input, 
 	
 	n1 = selThreshold;
 	n2 = sumThreshold;
-	outPixId = 0;
-	
-	
-	
 }
 
 void RTACleaning::init() {
@@ -44,13 +40,11 @@ RTAData* RTACleaning::process(RTAData* input) {
 	RTAData_CameraExtracted* integrated = (RTAData_CameraExtracted*) input;
 	
 	if(integrated->id == 1) {
-		
-		gm = array->getTelescope(integrated->telID)->getTelescopeType()->getCameraType()->getMap();
 
+		CTAGridMap *gm = array->getTelescope(integrated->telID)->getTelescopeType()->getCameraType()->getMap();
+		int16_t **outPixId = matrixCreate<CTAGridMap::Index>(gm->getRowSz(), gm->getColSz());
 		
-		outPixId = matrixCreate<CTAGridMap::Index>(gm->getRowSz(), gm->getColSz());
-		
-		clean(gm->pixId, integrated->pixelvalue);
+		clean(gm->pixId, integrated->pixelvalue, gm, outPixId);
 		
 		integrated->cleanedPixId = outPixId;
 		integrated->cleanedPixId_rows = gm->getRowSz();
@@ -62,7 +56,7 @@ RTAData* RTACleaning::process(RTAData* input) {
 }
 
 
-void RTACleaning::clean(int16_t **inPixId, uint16_t *counts) {
+void RTACleaning::clean(int16_t **inPixId, uint16_t *counts, CTAGridMap* gm, int16_t** outPixId) {
 	
 	// Optimize avoiding temporary variables
 	
@@ -80,9 +74,13 @@ void RTACleaning::clean(int16_t **inPixId, uint16_t *counts) {
 					
 					for (CTAGridMap::Size k = 0; k < gm->getNeighborsSz(); k++) {
 						
-						if (gm->nr[i][j][k] >= 0)
-							s += counts[inPixId[gm->nr[i][j][k]][gm->nc[i][j][k]]];
 						
+						if (gm->nr[i][j][k] >= 0)
+						{
+							auto id = inPixId[gm->nr[i][j][k]][gm->nc[i][j][k]];
+							if(id >= 0)
+								s += counts[id];
+						}
 					}
 					
 					if (s >= n2)                    // Check sum threshold
@@ -103,7 +101,7 @@ void RTACleaning::clean(int16_t **inPixId, uint16_t *counts) {
 	
 }
 
-void RTACleaning::clean2(int16_t **inPixId, uint16_t *counts) {
+void RTACleaning::clean2(int16_t **inPixId, uint16_t *counts, CTAGridMap* gm, int16_t** outPixId) {
 	
 	// Optimize avoiding temporary variables
 	

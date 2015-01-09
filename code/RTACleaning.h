@@ -43,18 +43,16 @@ namespace RTAAlgorithm {
 		
 	protected:
 		
-		void clean(int16_t **inPixId, uint16_t *counts);
-		void clean2(int16_t **inPixId, uint16_t *counts);
+		void clean(int16_t **inPixId, uint16_t *counts, CTAGridMap* gm, int16_t** outPixId);
+		void clean2(int16_t **inPixId, uint16_t *counts, CTAGridMap* gm, int16_t** outPixId);
 		
 	private:
 		
 		int16_t n1, n2;
 		
-		CTAGridMap *gm;
 		
 	public:
 		
-		int16_t **outPixId;
 
 		
 		
