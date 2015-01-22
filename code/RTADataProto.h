@@ -17,13 +17,12 @@
 #ifndef _RTADATAPROTO_H
 #define _RTADATAPROTO_H
 
-#include "RTAData.h"
-#include "rtautils/Matrix.h"
-
+#include <CTAData.h>
+#include <ctautils/Matrix.h>
 
 namespace RTAAlgorithm {
 	
-	class RTAData_Camera : public RTAData {
+	class RTAData_Camera : public CTAAlgorithm::CTAData {
 	public:
 		//pointer to array of array of waveforms
 		uint16_t* data;
@@ -49,7 +48,7 @@ namespace RTAAlgorithm {
 		};
 	};
 	
-	class RTAData_CameraExtracted : public RTAData {
+	class RTAData_CameraExtracted : public CTAAlgorithm::CTAData {
 	public:
 		//pointer to array of array of pixels of extracted waveforms
 		uint16_t* pixelvalue;

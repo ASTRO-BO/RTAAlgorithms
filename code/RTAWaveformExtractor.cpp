@@ -14,18 +14,19 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <packet/PacketLibDefinition.h>
+#include "RTADataProto.h"
 #include "RTAWaveformExtractor.h"
-#include "packet/PacketLibDefinition.h"
 
-using namespace RTAAlgorithm;
 using namespace PacketLib;
+using namespace CTAAlgorithm;
 
 //#define DEBUG 1
 //#define PRINTALG 1
 
+namespace RTAAlgorithm {
 
-
-RTAWaveformExtractor::RTAWaveformExtractor(CTAConfig::CTAMDArray* array, RTABuffer* buffer_input, RTABuffer* buffer_output, uint8_t window) : RTAProcessor(array, buffer_input, buffer_output) {
+RTAWaveformExtractor::RTAWaveformExtractor(CTAConfig::CTAMDArray* array, CTABuffer* buffer_input, CTABuffer* buffer_output, uint8_t window) : CTAProcessor(array, buffer_input, buffer_output) {
 	maxres = new unsigned short[3000];
 	timeres = new unsigned short[3000];
 	this->window = window;
@@ -35,7 +36,7 @@ void RTAWaveformExtractor::init() {
 
 }
 
-RTAData* RTAWaveformExtractor::process(RTAData* input) {
+CTAData* RTAWaveformExtractor::process(CTAData* input) {
 	RTAData_Camera* camera = (RTAData_Camera*) input;
 	RTAData_CameraExtracted* integrated = 0;
 	if(camera->id == 0) {
@@ -90,7 +91,7 @@ void RTAWaveformExtractor::calcWaveformExtraction(uint16_t* buffer, int16_t npix
 		double maxt = 0;
 		long sumn = 0;
 		long sumd = 0;
-		long maxj = 0;
+		//long maxj = 0;
 		double t = 0;
 		
 		for(int j=0; j<=ws-1; j++) {
@@ -102,7 +103,7 @@ void RTAWaveformExtractor::calcWaveformExtraction(uint16_t* buffer, int16_t npix
 		if(sumd != 0)
 			t = sumn / (double)sumd;
 		maxt = t;
-		maxj = 0;
+		//maxj = 0;
 		
 		for(int j=1; j<nsamples-ws; j++) {
 			sumn = sumn - s[j-1] * (j-1) + s[j+ws-1] * (j+ws-1);
@@ -113,7 +114,7 @@ void RTAWaveformExtractor::calcWaveformExtraction(uint16_t* buffer, int16_t npix
 				if(sumd != 0)
 					t = sumn / (double)sumd;
 				maxt = t;
-				maxj = j;
+				//maxj = j;
 			}
 		}
 		
@@ -133,3 +134,4 @@ void RTAWaveformExtractor::calcWaveformExtraction(uint16_t* buffer, int16_t npix
 	*/
 }
 
+}

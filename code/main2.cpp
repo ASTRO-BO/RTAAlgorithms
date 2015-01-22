@@ -1,10 +1,12 @@
+#include <iostream>
+#include <CTABuffer.h>
 #include "RTAWaveformExtractor.h"
 #include "RTACleaning.h"
 #include "Producer.h"
-#include "RTAConsumer.h"
-#include "CTAMDArray.h"
 
+using namespace std;
 using namespace CTAConfig;
+using namespace CTAAlgorithm;
 using namespace RTAAlgorithm;
 
 int main(int argc, char *argv[])
@@ -36,9 +38,9 @@ int main(int argc, char *argv[])
 	}
 
 	
-	RTABuffer buff_cameradata("camfullwaveform", 100);
-	RTABuffer buff_cameradata_int("camintegrated", 100);
-	RTABuffer buff_cameradata_cleaned("camcleaned", 100);
+	CTABuffer buff_cameradata("camfullwaveform", 100);
+	CTABuffer buff_cameradata_int("camintegrated", 100);
+	CTABuffer buff_cameradata_cleaned("camcleaned", 100);
 	
 	CTAMDArray array;
 	string baseconf = ctarta;
@@ -56,12 +58,12 @@ int main(int argc, char *argv[])
 	p.init(configFileName, rawfilename);
 	p.start();
 	
-	RTABufferCleaner delbuff(&buff_cameradata_cleaned);
+	CTABufferCleaner delbuff(&buff_cameradata_cleaned);
 	delbuff.start();
 	
 	
 	int nthreadswave=std::atoi(argv[3]);
-	RTAProcessorThread* thwave = new RTAProcessorThread[nthreadswave];
+	CTAProcessorThread* thwave = new CTAProcessorThread[nthreadswave];
 	for(int i=0; i<nthreadswave; i++) {
 		
 		thwave[i].init(&waveextractor);
@@ -69,7 +71,7 @@ int main(int argc, char *argv[])
 	}
 	
 	int nthreadscleaning=std::atoi(argv[3]);
-	RTAProcessorThread* thclean = new RTAProcessorThread[nthreadscleaning];
+	CTAProcessorThread* thclean = new CTAProcessorThread[nthreadscleaning];
 	for(int i=0; i<nthreadscleaning; i++) {
 		
 		thclean[i].init(&cleaning);

@@ -13,14 +13,18 @@
  *   For commercial purpose see appropriate license terms                  *
  *                                                                         *
  ***************************************************************************/
-#include "Producer.h"
 #include <iomanip>
 #include <vector>
+#include <string>
 #include <pthread.h>
+#include "Producer.h"
 
-using namespace RTAAlgorithm;
+using namespace CTAAlgorithm;
+using namespace PacketLib;
 
-ProducerCameraData::ProducerCameraData(RTABuffer* buffer_output) :RTAProducer(buffer_output) {
+namespace RTAAlgorithm {
+
+ProducerCameraData::ProducerCameraData(CTABuffer* buffer_output) : CTAProducer(buffer_output) {
 
 }
 
@@ -142,4 +146,6 @@ RTAData_Camera* ProducerCameraData::getNext() {
 		clock_gettime(CLOCK_MONOTONIC, &starttime);
 	}
 	return cam;
+}
+
 }

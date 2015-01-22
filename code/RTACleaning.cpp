@@ -14,19 +14,21 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <packet/PacketLibDefinition.h>
+#include <ctautils/Matrix.h>
+#include "RTADataProto.h"
 #include "RTACleaning.h"
-#include "packet/PacketLibDefinition.h"
-#include "rtautils/Matrix.h"
 
-using namespace RTAAlgorithm;
 using namespace PacketLib;
+using namespace CTAAlgorithm;
+using CTAConfig::CTAGridMap;
 
 //#define DEBUG 1
 //#define PRINTALG 1
 
+namespace RTAAlgorithm {
 
-
-RTACleaning::RTACleaning(CTAConfig::CTAMDArray* array, RTABuffer* buffer_input, RTABuffer* buffer_output, uint16_t selThreshold, uint16_t sumThreshold) : RTAProcessor(array, buffer_input, buffer_output) {
+RTACleaning::RTACleaning(CTAConfig::CTAMDArray* array, CTABuffer* buffer_input, CTABuffer* buffer_output, uint16_t selThreshold, uint16_t sumThreshold) : CTAProcessor(array, buffer_input, buffer_output) {
 	
 	n1 = selThreshold;
 	n2 = sumThreshold;
@@ -36,7 +38,7 @@ void RTACleaning::init() {
 
 }
 
-RTAData* RTACleaning::process(RTAData* input) {
+CTAData* RTACleaning::process(CTAData* input) {
 	RTAData_CameraExtracted* integrated = (RTAData_CameraExtracted*) input;
 	
 	if(integrated->id == 1) {
@@ -134,4 +136,4 @@ void RTACleaning::clean2(int16_t **inPixId, uint16_t *counts, CTAGridMap* gm, in
 	
 }
 
-
+}

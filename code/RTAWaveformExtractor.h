@@ -17,29 +17,21 @@
 #ifndef _RTAWAVEFORMEXTRACTOR_H
 #define _RTAWAVEFORMEXTRACTOR_H
 
-#include "RTAProcessor.h"
-#include "RTADataProto.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <iostream>
-#include "rtautils/Thread.h"
+#include <CTAProcessor.h>
+#include <CTABuffer.h>
+#include <ctautils/Thread.h>
 
 namespace RTAAlgorithm {
 	
-	
-	
-	
-	class RTAWaveformExtractor : public RTAProcessor {
+	class RTAWaveformExtractor : public CTAAlgorithm::CTAProcessor {
 		
-			
 	public:
 		//window is the size of the window of the waveform extractor
-		RTAWaveformExtractor(CTAConfig::CTAMDArray* array, RTABuffer* buffer_input = 0, RTABuffer* buffer_output = 0, uint8_t window = 6);
+		RTAWaveformExtractor(CTAConfig::CTAMDArray* array, CTAAlgorithm::CTABuffer* buffer_input = 0, CTAAlgorithm::CTABuffer* buffer_output = 0, uint8_t window = 6);
 		
 		void init();
 		
-		RTAData* process(RTAData* input);
+		CTAAlgorithm::CTAData* process(CTAAlgorithm::CTAData* input);
 		
 	protected:
 		
@@ -50,9 +42,6 @@ namespace RTAAlgorithm {
 		unsigned short* maxres;
 		unsigned short* timeres;
 		uint8_t window;
-		
-		
-		
 	};
 }
 

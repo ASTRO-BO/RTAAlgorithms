@@ -17,25 +17,17 @@ Producer.h
 #ifndef _PRODUCERCAMERADATA_H
 #define _PRODUCERCAMERADATA_H
 
-#include "rtautils/Thread.h"
-#include "rtautils/mac_clock_gettime.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
 #include <iostream>
-
+#include <ctautils/Thread.h>
+#include <ctautils/mac_clock_gettime.h>
 #include <packet/PacketBufferV.h>
+#include <CTABuffer.h>
+#include <CTAProducer.h>
 #include "RTADataProto.h"
-#include "RTABuffer.h"
-#include "RTAProducer.h"
-
-using namespace PacketLib;
 
 namespace RTAAlgorithm {
 	
-	
-	
-	class ProducerCameraData : public Thread, public RTAProducer {
+	class ProducerCameraData : public Thread, public CTAAlgorithm::CTAProducer {
 	private:
 		
 		double sizeMB;
@@ -44,10 +36,9 @@ namespace RTAAlgorithm {
 		
 		std::vector<RTAData_Camera*> sharedDataAndInfoBuffer;
 		
-		string configFileName;
-		string rawfilename;
+		std::string configFileName;
+		std::string rawfilename;
 		struct timespec starttime, stoptime;
-		
 		
 	protected:
 		
@@ -55,16 +46,15 @@ namespace RTAAlgorithm {
 
 	public:
 		
-		ProducerCameraData(RTABuffer* buffer_output);
+		ProducerCameraData(CTAAlgorithm::CTABuffer* buffer_output);
 		
-		void init(string configFileName, string rawfilename);
+		void init(std::string configFileName, std::string rawfilename);
 		
 		void *run();
 		
 		RTAData_Camera* getNext();
 		
 	};
-	
 }
 
 #endif

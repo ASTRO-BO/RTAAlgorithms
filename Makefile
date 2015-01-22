@@ -29,7 +29,7 @@ LINKERENV= ctarta, cfitsio
 EXE_NAME1 = alg1
 EXE_NAME2 = alg2
 EXE_NAME3 = alg3
-LIB_NAME = librtaproto
+LIB_NAME = libRTAAlgorithms
 VER_FILE_NAME = version.h
 #the name of the directory where the conf file are copied (into $(datadir))
 CONF_DEST_DIR = rtaalgorithms
@@ -87,7 +87,7 @@ ifneq (, $(findstring cfitsio, $(LINKERENV)))
 	LIBS += -lcfitsio
 endif
 ifneq (, $(findstring ctarta, $(LINKERENV)))
-	LIBS += -L$(CTARTA)/lib	-lpacket -lCTAConfig -lRTAUtils -lRTAAlgorithms -lpthread
+	LIBS += -L$(CTARTA)/lib	-lpacket -lCTAConfig -lCTAUtils -lCTAAlgorithms -lpthread
 endif
 ifneq (, $(findstring root, $(LINKERENV)))
 	ROOTCFLAGS   := $(shell root-config --cflags)

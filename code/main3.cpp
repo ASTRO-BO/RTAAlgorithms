@@ -44,6 +44,8 @@ void *producer(void *arg) {
 		
 		sem_post(full);
 	}
+
+	return NULL;
 }
 
 void *consumer(void *arg) {
@@ -60,6 +62,8 @@ void *consumer(void *arg) {
 		sem_post(empty);
 		printf("%d\n", b);
 	}
+
+	return NULL;
 }
 
 int main(int argc, char *argv[])
