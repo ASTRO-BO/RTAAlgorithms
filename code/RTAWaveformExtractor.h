@@ -19,7 +19,6 @@
 
 #include <CTAProcessor.h>
 #include <CTABuffer.h>
-#include <ctautils/Thread.h>
 
 namespace RTAAlgorithm {
 	

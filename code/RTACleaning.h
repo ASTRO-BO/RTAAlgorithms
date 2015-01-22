@@ -18,7 +18,6 @@
 #define _RTACLEANING_H
 
 #include <CTAProcessor.h>
-#include <ctautils/Thread.h>
 #include <CTAMDArray.h>
 #include <CTAGridMap.h>
 

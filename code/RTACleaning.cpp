@@ -44,7 +44,7 @@ CTAData* RTACleaning::process(CTAData* input) {
 	if(integrated->id == 1) {
 
 		CTAGridMap *gm = array->getTelescope(integrated->telID)->getTelescopeType()->getCameraType()->getMap();
-		int16_t **outPixId = matrixCreate<CTAGridMap::Index>(gm->getRowSz(), gm->getColSz());
+		int16_t **outPixId = CTAUtils::matrixCreate<CTAGridMap::Index>(gm->getRowSz(), gm->getColSz());
 		
 		clean(gm->pixId, integrated->pixelvalue, gm, outPixId);
 		

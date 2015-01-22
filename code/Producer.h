@@ -27,7 +27,7 @@ Producer.h
 
 namespace RTAAlgorithm {
 	
-	class ProducerCameraData : public Thread, public CTAAlgorithm::CTAProducer {
+	class ProducerCameraData : public CTAUtils::Thread, public CTAAlgorithm::CTAProducer {
 	private:
 		
 		double sizeMB;

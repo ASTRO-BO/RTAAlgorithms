@@ -78,7 +78,7 @@ namespace RTAAlgorithm {
 		~RTAData_CameraExtracted() {
 			delete[] pixelvalue;
 			delete[] timevalue;
-			matrixDestroy<int16_t>(cleanedPixId_rows, cleanedPixId_cols, cleanedPixId);
+			CTAUtils::matrixDestroy<int16_t>(cleanedPixId_rows, cleanedPixId_cols, cleanedPixId);
 		}
 	};
 
