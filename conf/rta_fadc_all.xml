@@ -1,4 +1,4 @@
-<stream name="rta_fadc_all" xmlns="http://iasfbo.inaf.it/telemetry" bigendian="true" >
+<stream name="rta_fadc_all" xmlns="http://iasfbo.inaf.it/telemetry" bigendian="false" >
   <header name="CTAHeaderGEN" description="Header CTA" idref="packetlength">
     <field name="Version number" type="uint3" constvalue="4" />
     <field name="Type" type="uint1" constvalue="0" />
@@ -18,12 +18,12 @@
       <field name="LTtime" type="uint64" />
       <field name="ArrayID" type="uint16" />
       <field name="runNumber" type="uint16" />
-    </datafieldheader>
-    <sourcedatafield>
       <field name="eventNumber" type="uint32" />
       <field name="TelescopeID" type="uint16" />
       <field name="numberOfTriggeredTelescopes" type="uint8" />
       <field name="telescopeCounter" type="uint8" />
+    </datafieldheader>
+    <sourcedatafield>
       <field name="Number of pixels" type="uint16" id="ntt" />
       <field name="Number of samples" type="uint16" />
       <field name="Number of pixels ID zero-suppressed" type="uint16" id="npixels" />
@@ -76,12 +76,12 @@
       <field name="LTtime" type="uint64" />
       <field name="ArrayID" type="uint16" />
       <field name="runNumber" type="uint16" />
-    </datafieldheader>
-    <sourcedatafield>
       <field name="eventNumber" type="uint32" />
       <field name="TelescopeID" type="uint16" />
       <field name="numberOfTriggeredTelescopes" type="uint8" />
       <field name="telescopeCounter" type="uint8" />
+    </datafieldheader>
+    <sourcedatafield>
       <field name="Number of pixels" type="uint16" id="ntt_2" />
       <field name="Number of samples" type="uint16" />
       <field name="Number of pixels ID zero-suppressed" type="uint16" id="npixels_2" />
@@ -144,13 +144,13 @@
       <field name="LTtime" type="uint64" />
       <field name="ArrayID" type="uint16" />
       <field name="runNumber" type="uint16" />
-    </datafieldheader>
-    <sourcedatafield>
       <field name="eventNumber" type="uint32" />
       <field name="TelescopeID" type="uint16" />
       <field name="numberOfTriggeredTelescopes" type="uint8" />
       <field name="telescopeCounter" type="uint8" />
-      <field name="Number of pixels" type="uint16" id="ntt_3" />
+    </datafieldheader>
+    <sourcedatafield>
+     <field name="Number of pixels" type="uint16" id="ntt_3" />
       <field name="Number of samples" type="uint16" />
       <field name="Number of pixels ID zero-suppressed" type="uint16" id="npixels_3" />
       <rblock name="triggered_telescope_pixel1_50GEN" maxnumberofblocks="1900" idref="ntt_3">
