@@ -47,9 +47,9 @@ void ProducerCameraData::createBuffer(string configFileName, string rawfilename)
 		Packet *p = ps->getPacketType("triggered_telescope1_30GEN");
 		npix_idx = p->getPacketSourceDataField()->getFieldIndex("Number of pixels");
 		nsamp_idx = p->getPacketSourceDataField()->getFieldIndex("Number of samples");
-		telID_idx = p->getPacketSourceDataField()->getFieldIndex("TelescopeID");
-		evtn_idx = p->getPacketSourceDataField()->getFieldIndex("eventNumber");
-		ntelsevt_idx = p->getPacketSourceDataField()->getFieldIndex("numberOfTriggeredTelescopes");
+		telID_idx = p->getPacketDataFieldHeader()->getFieldIndex("TelescopeID");
+		evtn_idx = p->getPacketDataFieldHeader()->getFieldIndex("eventNumber");
+		ntelsevt_idx = p->getPacketDataFieldHeader()->getFieldIndex("numberOfTriggeredTelescopes");
 	} catch (PacketException* e)
 	{
 		cout << "Error during encoding: ";
@@ -63,9 +63,9 @@ void ProducerCameraData::createBuffer(string configFileName, string rawfilename)
 		
 		int npix = p->getPacketSourceDataField()->getFieldValue(npix_idx);
 		int nsamp = p->getPacketSourceDataField()->getFieldValue(nsamp_idx);
-		int telID = p->getPacketSourceDataField()->getFieldValue(telID_idx);
-		int evtID = p->getPacketSourceDataField()->getFieldValue(evtn_idx);
-		int ntelsevt = p->getPacketSourceDataField()->getFieldValue(ntelsevt_idx);
+		int telID = p->getPacketDataFieldHeader()->getFieldValue(telID_idx);
+		int evtID = p->getPacketDataFieldHeader()->getFieldValue(evtn_idx);
+		int ntelsevt = p->getPacketDataFieldHeader()->getFieldValue(ntelsevt_idx);
 #ifdef DEBUG
 		if(p->getPacketID() == 0) {
 			std::cerr << "No packet type recognized" << std::endl;
