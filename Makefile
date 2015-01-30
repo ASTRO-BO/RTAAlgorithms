@@ -83,11 +83,11 @@ CXXFLAGS ?= -g
 #Insert the implicit parameter to the compiler:
 ALL_CFLAGS = -Wall -std=c++11 $(INCPATH)
 
-ifneq (, $(findstring cfitsio, $(LINKERENV)))
-	LIBS += -lcfitsio
-endif
 ifneq (, $(findstring ctarta, $(LINKERENV)))
 	LIBS += -L$(CTARTA)/lib	-lpacket -lCTAConfig -lCTAUtils -lCTAAlgorithms -lpthread
+endif
+ifneq (, $(findstring cfitsio, $(LINKERENV)))
+	LIBS += -lcfitsio
 endif
 ifneq (, $(findstring root, $(LINKERENV)))
 	ROOTCFLAGS   := $(shell root-config --cflags)
