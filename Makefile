@@ -121,6 +121,11 @@ endif
 LINK     = $CC
 #for link
 LFLAGS = -shared -Wl,-soname,$(TARGET1) -Wl,-rpath,$(DESTDIR)
+
+
+ifneq (, $(findstring linux, $(SYSTEM)))
+	LIBS += -lrt
+endif
 AR       = ar cqs
 TAR      = tar -cf
 GZIP     = gzip -9f
